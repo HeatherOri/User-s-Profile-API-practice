@@ -1,3 +1,6 @@
+<a href="https://heatherori.github.io/user-profile-api-practice/" target="_blank">
+<img src="https://heatherori.github.io/portfolio/image/api_practice.jpg" alt="user_profile">
+</a>
 <h3>Facebook user's profile demo</h3>
           <p>
             This practice is about API response, and imitating Facebook to make

@@ -4,22 +4,25 @@
   const BASE_URL = "https://randomuser.me/api/";
   axios.get(BASE_URL).then((response) => {
     const data = response.data.results[0];
+    console.log(response.data.results);
     renderNavbarAvatar(data);
     renderProfile(data);
     renderPersonalInfo(data);
   });
 
-      axios.get(BASE_URL).then((response) => {
-        var data1 = response.data.results[0];
-        renderFriends(data1);
-      });
-
+  for (i = 1; i <= 8; i++) {
+    axios.get(BASE_URL).then((response) => {
+      const data1 = response.data.results[0];
+      renderFriends(data1);
+    });
+  }
 })();
 
 function renderNavbarAvatar(data) {
   const avatar = document.querySelector('[data-target="avatar-thumbnail"]');
   avatar.innerHTML = `
-  <a href="#"><img src="${data.picture.thumbnail}" alt="avatar"></a>
+  <img src="${data.picture.thumbnail}" alt="avatar">
+  <span>${formatName(data.name.first)} ${formatName(data.name.last)}</span>
   `;
 }
 
@@ -63,18 +66,9 @@ function renderPersonalInfo(data) {
 
 function renderFriends(data1) {
   const friends = document.querySelector('[data-target="user-friends"]');
-  friends.innerHTML = `
+  friends.innerHTML += `
   <img src="${data1.picture.medium}" alt="friend1" class="friend-avatar">
-  <img src="https://randomuser.me/api/portraits/med/women/34.jpg" alt="friend1" class="friend-avatar">
-  <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="friend1" class="friend-avatar">
-  <img src="https://randomuser.me/api/portraits/med/men/52.jpg" alt="friend1" class="friend-avatar">
-  <img src="https://randomuser.me/api/portraits/med/men/15.jpg" alt="friend1" class="friend-avatar">
-  <img src="https://randomuser.me/api/portraits/med/men/78.jpg" alt="friend1" class="friend-avatar">
-  <img src="https://randomuser.me/api/portraits/med/women/91.jpg" alt="friend1" class="friend-avatar">
-  <img src="https://randomuser.me/api/portraits/med/men/96.jpg" alt="friend1" class="friend-avatar">
-  <img src="https://randomuser.me/api/portraits/med/men/2.jpg" alt="friend1" class="friend-avatar">
   `;
-  return;
 }
 
 function formatName(name) {
